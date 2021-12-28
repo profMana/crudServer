@@ -11,7 +11,8 @@ const mongo = require("mongodb");
 const mongoClient = mongo.MongoClient;
 const ObjectId = mongo.ObjectId;
 // const CONNECTIONSTRING =  "mongodb://127.0.0.1:27017";
-const CONNECTIONSTRING =  "mongodb+srv://admin:admin@cluster0.xoopk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+// const CONNECTIONSTRING =  "mongodb+srv://admin:admin@cluster0.xoopk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const CONNECTIONSTRING = process.env.MONGODB_URI
 const CONNECTIONOPTIONS = { useNewUrlParser: true, useUnifiedTopology: true };
 const dbNAME = "recipeBook"
 const PORT = process.env.PORT || 1337
