@@ -1,1 +1,1 @@
-web: nodemon server.ts
+web: ts-node server.ts
