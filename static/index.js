@@ -79,7 +79,8 @@ $(document).ready(function() {
 			if (method=="get"){
 				let content = ""
 				for (let key in data)  
-					content+= "<strong>"+key+"</strong> : " + data[key] + "<br>"
+					content+= "<strong>"+key+"</strong> : " + 
+				                              JSON.stringify(data[key]) + "<br>"
 				divDettagli.html(content)
 			}
 			else{  // ******* DOPO *******

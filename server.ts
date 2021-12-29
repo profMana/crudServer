@@ -31,6 +31,7 @@ const PORT = process.env.PORT || 1337
 const server = http.createServer(app)
 server.listen(PORT, function() {
     console.log("Server in ascolto sulla porta " + PORT);
+	console.log("CONNECTIONSTRING="+CONNECTIONSTRING)
     init();
 });
 
