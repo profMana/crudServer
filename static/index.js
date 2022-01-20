@@ -10,7 +10,7 @@ $(document).ready(function() {
     divFilters.hide()
 	$("#lstHair").prop("selectedIndex", -1);
     
-	let request = inviaRichiesta("get", "api/getCollections");
+	let request = inviaRichiesta("get", "/api/getCollections");
     request.fail(errore)
     request.done(function(collections) {
         let label = divCollections.children("label")

@@ -1,3 +1,6 @@
+
+let URL = "https://roberto-mana-app.herokuapp.com"
+
 function inviaRichiesta(method, url, parameters = {}) {
     let contentType;
     if (method.toUpperCase() == "GET") {
@@ -9,7 +12,7 @@ function inviaRichiesta(method, url, parameters = {}) {
     }
 
     return $.ajax({
-        url: url, //default: currentPage
+        url: URL + url,
         type: method,
         data: parameters,
         contentType: contentType,

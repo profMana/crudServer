@@ -17,14 +17,6 @@ const CONNECTIONOPTIONS = { useNewUrlParser: true, useUnifiedTopology: true };
 const dbNAME = "recipeBook"
 const PORT = process.env.PORT || 1337
 
-/* compass:
- connection string new version:
-    mongodb+srv://admin:admin@cluster0.xoopk.mongodb.net/test
-
- connection string old version:    
-    mongodb://admin:admin@cluster0-shard-00-00.xoopk.mongodb.net:27017,cluster0-shard-00-01.xoopk.mongodb.net:27017,cluster0-shard-00-02.xoopk.mongodb.net:27017/test?replicaSet=atlas-31rhvw-shard-0&ssl=true&authSource=admin
-*/
-
 
 /* ***************************** Avvio Server ****************************** */
 
@@ -74,9 +66,9 @@ app.use("/", function (req, res, next) {
 
 
 // 7 - CORS Policy
-const whitelist = ["http://localhost:1337", 
+const whitelist = [ "http://localhost:1337", 
 				   "https://my-crud-server.herokuapp.com",
-                   "http://localhost:4200"
+                    "http://localhost:4200"
 				  ];
 const corsOptions = {
     origin: function(origin, callback) {
