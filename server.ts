@@ -67,9 +67,9 @@ app.use("/", function (req, res, next) {
 
 // 7 - CORS Policy
 app.use("/", function(req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "*")
-    res.setHeader("Access-Control-Allow-Headers", "*");
-    res.setHeader("Access-Control-Allow-Methods", "*");
+    /* res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Headers", "*"); */
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
 	next()
 })
 const whitelist = [ "http://localhost:1337", 
