@@ -66,6 +66,10 @@ app.use("/", function (req, res, next) {
 
 
 // 7 - CORS Policy
+app.use("/", function(req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*")
+	next()
+}
 const whitelist = [ "http://localhost:1337", 
 				   "https://my-crud-server.herokuapp.com",
                     "http://localhost:4200"
