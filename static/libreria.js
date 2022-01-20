@@ -12,7 +12,7 @@ function inviaRichiesta(method, url, parameters = {}) {
     }
 
     return $.ajax({
-        url: URL + url,
+        url: url,
         type: method,
         data: parameters,
         contentType: contentType,
