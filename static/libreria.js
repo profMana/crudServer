@@ -1,5 +1,5 @@
 
-let URL = "https://roberto-mana-app.herokuapp.com"
+let URL = "https://my-crud-server.herokuapp.com"
 
 function inviaRichiesta(method, url, parameters = {}) {
     let contentType;
