@@ -68,8 +68,8 @@ app.use("/", function (req, res, next) {
 // 7 - CORS Policy
 app.use("/", function(req, res, next) {
     /* res.setHeader("Access-Control-Allow-Origin", "*")
-    res.setHeader("Access-Control-Allow-Headers", "*"); */
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "*");  
+    res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE"); */
 	next()
 })
 const whitelist = [ "http://localhost:1337", 
@@ -80,6 +80,7 @@ const corsOptions = {
     origin: function(origin, callback) {
         if (!origin)
             return callback(null, true);
+		console.log("origin:::", origin)
         if (whitelist.indexOf(origin) === -1) {
             var msg = 'The CORS policy for this site does not ' +
                 'allow access from the specified Origin.';
