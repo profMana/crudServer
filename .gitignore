@@ -1,3 +1,5 @@
 #  Node build artifacts
 # .gitignore
+
 node_modules
+.env
