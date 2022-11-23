@@ -1,21 +1,18 @@
-// import
+// import 
 import http from "http";
 import url from "url";
 import fs from "fs";
 import dotenv from "dotenv";
-dotenv.config({ path: ".env" });
-import express from "express";                // @types/express
-import fileUpload from "express-fileupload";  // @types/express-fileupload
-import cors from "cors";                      // @types/cors
-
-// mongoDb
 import { MongoClient, ObjectId } from "mongodb";
-const connectionString: any = process.env.connectionString;
-const DBNAME = "unicorns";
+import express from "express";  // @types/express
+import cors from "cors"         // @types/cors
 
-// const
+// config
 const PORT = process.env.PORT || 1337
+dotenv.config({ path: ".env" });
 const app = express();
+const connectionString: any = process.env.connectionString;
+const DBNAME = "5B";
 declare global {
 	namespace Express {
 		interface Request {
@@ -26,6 +23,7 @@ declare global {
 		}	
 	}
 }
+
 
 /* ****************** Creazione ed Avvio del Server ************************ */
 let server = http.createServer(app);
@@ -96,10 +94,10 @@ app.set("json spaces", 4)
 
 // 6 - CORS Policy
 const whitelist = [ 
-				   "http://my-crud-server.herokuapp.com",
-				   "https://my-crud-server.herokuapp.com",
+				   "http://robertomana-crudserver.netlify.app",
+				   "https://robertomana-crudserver.netlify.app",
 				   "http://localhost:1337", 
-                   "http://localhost:4200"
+                   "https://localhost:4200"
 				  ];
 const corsOptions = {
     origin: function(origin, callback) {
