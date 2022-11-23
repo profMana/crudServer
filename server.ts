@@ -14,7 +14,7 @@ const connectionString: any = process.env.connectionString;
 const DBNAME = "unicorns";
 
 // const
-const PORT = 1337;
+const PORT = process.env.PORT || 1337
 const app = express();
 declare global {
 	namespace Express {
