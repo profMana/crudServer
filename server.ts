@@ -11,7 +11,7 @@ import cors from "cors"         // @types/cors
 const PORT = process.env.PORT || 1337
 dotenv.config({ path: ".env" });
 const app = express();
-const connectionString: any = process.env.connectionString;
+const connectionString: any = process.env.MONGODB_URI || process.env.connectionString;
 const DBNAME = "5B";
 declare global {
 	namespace Express {
@@ -118,7 +118,7 @@ app.use("/", cors(corsOptions));
 
 
 
-// 10 apertura della connessione
+// apertura della connessione
 app.use("/api/", function (req, res, next) {
 	let connection = new MongoClient(connectionString);
     connection.connect()
@@ -136,7 +136,7 @@ app.use("/api/", function (req, res, next) {
 
 
 
-// PAGINA 3
+
 
 /* ********************** ELENCO DELLE CLIENT ROUTES  *********************** */
  
