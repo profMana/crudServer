@@ -97,7 +97,7 @@ const whitelist = [
 				   "http://robertomana-crudserver.netlify.app",
 				   "https://robertomana-crudserver.netlify.app",
 				   "http://localhost:1337", 
-                   "https://localhost:4200"
+                   "http://localhost:4200"
 				  ];
 const corsOptions = {
     origin: function(origin, callback) {
