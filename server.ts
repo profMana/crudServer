@@ -8,11 +8,12 @@ import express from "express";  // @types/express
 import cors from "cors"         // @types/cors
 
 // config
-const PORT = process.env.PORT || 1337
+const PORT = process.env.PORT || 1337;
 dotenv.config({ path: ".env" });
 const app = express();
 const connectionString:string = process.env.connectionString;
 const DBNAME = "5B";
+
 declare global {
 	namespace Express {
 		interface Request {
