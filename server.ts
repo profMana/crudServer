@@ -121,6 +121,7 @@ app.use("/", cors(corsOptions));
 
 // apertura della connessione
 app.use("/api/", function (req, res, next) {
+	console.log("connectionString" + connectionString)
 	let connection = new MongoClient(connectionString);
     connection.connect()
 	.catch((err: any) => {
