@@ -33,7 +33,7 @@ let paginaErrore: string = "";
 server.listen(PORT, () => {
   init();
   console.log("Server in ascolto sulla porta " + PORT);
-  console.log("connectionString" + connectionString)
+  console.log("connectionString: " + connectionString)
 });
 
 function init() {
@@ -71,6 +71,7 @@ app.use("/", express.urlencoded({"limit":"50mb", "extended": true }))
 
 // Lettura dei parametri get inviati in formato JSON
 app.use(function (req, res, next) {
+	console.log("------------------------------------")
 	let _url = url.parse(req.url, false)
 	let params = _url.query || "";
 	params = decodeURIComponent(params);
@@ -122,7 +123,7 @@ app.use("/", cors(corsOptions));
 
 // apertura della connessione
 app.use("/api/", function (req, res, next) {
-	console.log("connectionString" + connectionString)
+	console.log("connectionString: " + connectionString)
 	let connection = new MongoClient(connectionString);
     connection.connect()
 	.catch((err: any) => {
