@@ -270,12 +270,12 @@ app.put('/api/:collection/:id', function(req, res, next) {
 // Default route
 app.use('/', function (req, res, next) {
     res.status(404)
-    if (req.originalUrl.startsWith("/api/")) {
+    //if (req.url.startsWith("/api/")) {
         res.send("Risorsa non trovata");
 		req["client"].close();
-    }
+    /*}
     else  
-		res.send(paginaErrore);
+		res.send(paginaErrore);*/
 });
 
 
