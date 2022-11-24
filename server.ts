@@ -97,7 +97,7 @@ const whitelist = [
 			"http://localhost:1337", 
 			"https://localhost:1338", 
 			"http://robertomana-crudserver.onrender.com",
-			"https://robertomana-crudserver.onrender.com",
+			"https://robertomana-crudserver.onrender.com",			
             "http://localhost:4200"
 				  ];
 const corsOptions = {
