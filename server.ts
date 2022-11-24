@@ -11,8 +11,8 @@ import cors from "cors"         // @types/cors
 const PORT = process.env.PORT || 1337
 //dotenv.config({ path: ".env" });
 const app = express();
-const connectionString:string = "mongodb+srv://admin:admin@cluster0.xoopk.mongodb.net/?retryWrites=true&w=majority"
-// const connectionString:string = process.env.connectionString;
+// const connectionString:string = "mongodb+srv://admin:admin@cluster0.xoopk.mongodb.net/?retryWrites=true&w=majority"
+const connectionString:string = process.env.connectionString;
 const DBNAME = "5B";
 declare global {
 	namespace Express {
@@ -33,7 +33,6 @@ let paginaErrore: string = "";
 server.listen(PORT, () => {
   init();
   console.log("Server in ascolto sulla porta " + PORT);
-  console.log("connectionString: " + connectionString)
 });
 
 function init() {
@@ -71,7 +70,6 @@ app.use("/", express.urlencoded({"limit":"50mb", "extended": true }))
 
 // Lettura dei parametri get inviati in formato JSON
 app.use(function (req, res, next) {
-	console.log("------------------------------------")
 	let _url = url.parse(req.url, false)
 	let params = _url.query || "";
 	params = decodeURIComponent(params);
@@ -123,7 +121,6 @@ app.use("/", cors(corsOptions));
 
 // apertura della connessione
 app.use("/api/", function (req, res, next) {
-	console.log("connectionString: " + connectionString)
 	let connection = new MongoClient(connectionString);
     connection.connect()
 	.catch((err: any) => {
