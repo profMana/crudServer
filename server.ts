@@ -94,10 +94,11 @@ app.set("json spaces", 4)
 
 // 6 - CORS Policy
 const whitelist = [ 
-				   "http://robertomana-crudserver.netlify.app",
-				   "https://robertomana-crudserver.netlify.app",
-				   "http://localhost:1337", 
-                   "http://localhost:4200"
+			"http://localhost:1337", 
+			"https://localhost:1338", 
+			"http://robertomana-crudserver.onrender.com",
+			"https://robertomana-crudserver.onrender.com",
+            "http://localhost:4200"
 				  ];
 const corsOptions = {
     origin: function(origin, callback) {

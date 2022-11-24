@@ -126,8 +126,8 @@ function aggiungiButton(method, id="") {
 			}			
 			let rq = inviaRichiesta(method, "/api/"+currentCollection+"/"+id, 
 			                                                         {params})
-			request.fail(errore)
-			request.done(function(data) {
+			rq.fail(errore)
+			rq.done(function(data) {
 				alert("Operazione eseguita correttamente")
 				getCollection()
 			})
@@ -142,8 +142,8 @@ function _delete() {
 	let id = $(this).prop("_id")
 	if (confirm("vuoi veramente cancellare il record " + id + "?")) {
 		let rq = inviaRichiesta("delete", "/api/"+ currentCollection+"/"+ id)
-		request.fail(errore)
-		request.done(function(data) {
+		rq.fail(errore)
+		rq.done(function(data) {
 			alert("Record rimosso correttamente")
 			getCollection()
 		})

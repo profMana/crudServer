@@ -1,8 +1,9 @@
-
-node_modules
 Ese_02_crud_server
 crudServer_old_js
 DB
-.env
 git.txt
+
+node_modules
+.env
 package-lock.json
+.vscode
