@@ -11,7 +11,7 @@ import cors from "cors"         // @types/cors
 const PORT = process.env.PORT || 1337
 dotenv.config({ path: ".env" });
 const app = express();
-const connectionString: any = process.env.MONGODB_URI || process.env.connectionString;
+const connectionString: any = process.env.connectionString;
 const DBNAME = "5B";
 declare global {
 	namespace Express {
@@ -270,12 +270,12 @@ app.put('/api/:collection/:id', function(req, res, next) {
 // Default route
 app.use('/', function (req, res, next) {
     res.status(404)
-    //if (req.url.startsWith("/api/")) {
+    if (req.originalUrl.startsWith("/api/")) {
         res.send("Risorsa non trovata");
 		req["client"].close();
-    /*}
+    }
     else  
-		res.send(paginaErrore);*/
+		res.send(paginaErrore);
 });
 
 
@@ -283,5 +283,5 @@ app.use('/', function (req, res, next) {
 app.use("/", (err: any, req: any, res: any, next: any) => {
   console.log("SERVER ERROR " + err.stack);
   res.status(500);
-  res.send("ERRR: " + err.message);
+   res.send("ERRR: " + err.message);
 });
