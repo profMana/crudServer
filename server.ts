@@ -11,7 +11,7 @@ import cors from "cors"         // @types/cors
 const PORT = process.env.PORT || 1337
 dotenv.config({ path: ".env" });
 const app = express();
-const connectionString: any = process.env.connectionString;
+const connectionString:string = process.env.connectionString;
 const DBNAME = "5B";
 declare global {
 	namespace Express {
@@ -32,6 +32,7 @@ let paginaErrore: string = "";
 server.listen(PORT, () => {
   init();
   console.log("Server in ascolto sulla porta " + PORT);
+  console.log(connectionString)
 });
 
 function init() {
