@@ -283,5 +283,5 @@ app.use('/', function (req, res, next) {
 app.use("/", (err: any, req: any, res: any, next: any) => {
   console.log("SERVER ERROR " + err.stack);
   res.status(500);
-  res.send(err.message);
+  res.send("ERRR: " + err.message);
 });
