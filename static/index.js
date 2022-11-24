@@ -11,7 +11,7 @@ divFilters.hide()
 $("#lstHair").prop("selectedIndex", -1);
 
 
-// Elenco collezioni
+/* Elenco collezioni
 let request = inviaRichiesta("get", "/api/getCollections");
 request.fail(errore)
 request.done(function(collections) {
@@ -28,7 +28,7 @@ request.done(function(collections) {
 	label.remove()
 })
 
-
+*/
 			
 // Richiedi elenco records
 function getCollection(){

@@ -27,7 +27,7 @@ function errore(jqXHR, text_status, string_error) {
 	else if (jqXHR.status == 200)
         alert("Formato dei dati non corretto : " + jqXHR.responseText);
     else
-        alert("Server Error: " + jqXHR.status + " - " + jqXHR.responseText);
+        alert("Server Error:" + jqXHR.status + " - " + jqXHR.responseText);
 }
 
 function generaNumero(a, b){
