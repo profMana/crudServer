@@ -32,7 +32,7 @@ let paginaErrore: string = "";
 server.listen(PORT, () => {
   init();
   console.log("Server in ascolto sulla porta " + PORT);
-  console.log(connectionString)
+  console.log("connectionString" + connectionString)
 });
 
 function init() {
