@@ -11,7 +11,6 @@ import cors from "cors"         // @types/cors
 const PORT = process.env.PORT || 1337
 dotenv.config({ path: ".env" });
 const app = express();
-// const connectionString:string = "mongodb+srv://admin:admin@cluster0.xoopk.mongodb.net/?retryWrites=true&w=majority"
 const connectionString:string = process.env.connectionString;
 const DBNAME = "5B";
 declare global {
