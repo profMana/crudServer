@@ -17,7 +17,7 @@ const DBNAME = "5B";
 declare global {
 	namespace Express {
 		interface Request {
-			client : any  // ? means optional
+			connessione : any  // ? means optional
 		}
 		interface Response {
 			log : (err:any)=> any 
@@ -97,6 +97,7 @@ app.set("json spaces", 4)
 const whitelist = [ 
 			"http://localhost:1337", 
 			"https://localhost:1338", 
+			/* per provare da smartphone verso server locale bisognerebbe aggiungere l'IP della macchina */
 			"http://robertomana-crudserver.onrender.com",
 			"https://robertomana-crudserver.onrender.com",			
             "http://localhost:4200"
@@ -116,7 +117,7 @@ const corsOptions = {
     },
     credentials: true
 };
-app.use("/", cors(corsOptions));
+//app.use("/", cors(corsOptions));
 
 
 
@@ -129,7 +130,8 @@ app.use("/api/", function (req, res, next) {
 		res.status(503).send(msg)
 	}) 
 	.then((client: any) => {
-		req["client"]=client;
+		// req["client"] è un campo esistente !!!!!!!!!!
+		req["connessione"]=client;
 		next();
 	})
 })
@@ -144,7 +146,7 @@ app.use("/api/", function (req, res, next) {
  
 // elenco collezioni
 app.get('/api/getCollections', function(req, res, next) {
-	let db = req["client"].db(DBNAME);
+	let db = req["connessione"].db(DBNAME);
 	db.listCollections().toArray(function(err, collections) {
 		if (err) {
 			res.status(500).send("Errore lettura elenco collezioni")
@@ -152,7 +154,7 @@ app.get('/api/getCollections', function(req, res, next) {
 		else {
 			res.send(collections)
 		}
-		req["client"].close();
+		req["connessione"].close();
 	})
 }); 
  
@@ -160,7 +162,7 @@ app.get('/api/getCollections', function(req, res, next) {
 // Elenco Record 
 app.get('/api/:collection', function(req, res, next) {
 	let collectionSelected = req.params.collection;
-	let collection = req.client.db(DBNAME).collection(collectionSelected);
+	let collection = req.connessione.db(DBNAME).collection(collectionSelected);
 	collection.find(req.query).toArray(function(err, data) {
 		if (err) {
 			res.status(500).send("Errore esecuzione query")
@@ -174,7 +176,7 @@ app.get('/api/:collection', function(req, res, next) {
 			}
 			res.send(response);
 		}
-		req["client"].close();
+		req["connessione"].close();
 	})
 }) 
 
@@ -183,7 +185,7 @@ app.get('/api/:collection', function(req, res, next) {
 app.get("/api/:collection/:id", (req: any, res: any, next: any) => {
     let collectionSelected = req.params.collection;
     let id = new ObjectId(req.params.id);	
-	let collection = req.client.db(DBNAME).collection(collectionSelected);	
+	let collection = req.connessione.db(DBNAME).collection(collectionSelected);	
 	collection.findOne({ "_id": id }, function(err, data) {
 		if (err) {
 			res.status(500).send("Errore esecuzione query")
@@ -191,7 +193,7 @@ app.get("/api/:collection/:id", (req: any, res: any, next: any) => {
 		else {
 			res.send(data)
 		}
-		req["client"].close();
+		req["connessione"].close();
 	})
 });
 
@@ -200,7 +202,7 @@ app.get("/api/:collection/:id", (req: any, res: any, next: any) => {
 app.post("/api/:collection", (req: any, res: any, next: any) => {
     let collectionSelected = req.params.collection;
     let params = req.body.params;
-	let collection = req.client.db(DBNAME).collection(collectionSelected);
+	let collection = req.connessione.db(DBNAME).collection(collectionSelected);
 	collection.insertOne(params, function(err, data) {
 		if (err) {
 			res.status(500).send("Errore esecuzione query")
@@ -208,7 +210,7 @@ app.post("/api/:collection", (req: any, res: any, next: any) => {
 		else {
 			res.send(data)
 		}
-		req["client"].close();
+		req["connessione"].close();
 	})
 });
 
@@ -216,7 +218,7 @@ app.post("/api/:collection", (req: any, res: any, next: any) => {
 app.delete("/api/:collection/:id", (req: any, res: any, next: any) => {
     let collectionSelected = req.params.collection;
     let id = new ObjectId(req.params.id);	
-	let collection = req.client.db(DBNAME).collection(collectionSelected);
+	let collection = req.connessione.db(DBNAME).collection(collectionSelected);
 	collection.deleteOne({ "_id": id }, function(err, data) {
 		if (err) {
 			res.status(500).send("Errore esecuzione query")
@@ -224,7 +226,7 @@ app.delete("/api/:collection/:id", (req: any, res: any, next: any) => {
 		else {
 			res.send(data)
 		}
-		req["client"].close();
+		req["connessione"].close();
 	})
 });
 
@@ -233,7 +235,7 @@ app.patch('/api/:collection/:id', function(req, res, next) {
     let collectionSelected = req.params.collection;
 	let id = new ObjectId(req.params.id);	
     let params = req.body.params;
-	let collection = req.client.db(DBNAME).collection(collectionSelected);
+	let collection = req.connessione.db(DBNAME).collection(collectionSelected);
 	collection.updateOne({ "_id": id }, { "$set": params },
 		function(err, data) {
 			if (err) {
@@ -242,7 +244,7 @@ app.patch('/api/:collection/:id', function(req, res, next) {
 			else {
 				res.send(data)
 			}
-			req["client"].close();
+			req["connessione"].close();
 		}
 	)
 });
@@ -251,7 +253,7 @@ app.put('/api/:collection/:id', function(req, res, next) {
     let collectionSelected = req.params.collection;
 	let id = new ObjectId(req.params.id);	
     let params = req.body.params;
-	let collection = req.client.db(DBNAME).collection(collectionSelected);
+	let collection = req.connessione.db(DBNAME).collection(collectionSelected);
 	collection.replaceOne({ "_id": id }, params, function(err, data) {		
 		if (err) {
 			console.log(err)
@@ -260,7 +262,7 @@ app.put('/api/:collection/:id', function(req, res, next) {
 		else {
 			res.send(data)
 		}
-		req["client"].close();
+		req["connessione"].close();
 	}) 
 });
 
@@ -274,7 +276,7 @@ app.use('/', function (req, res, next) {
     res.status(404)
     if (req.originalUrl.startsWith("/api/")) {
         res.send("Risorsa non trovata");
-		req["client"].close();
+		req["connessione"].close();
     }
     else  
 		res.send(paginaErrore);
@@ -283,7 +285,9 @@ app.use('/', function (req, res, next) {
 
 // Gestione degli errori
 app.use("/", (err: any, req: any, res: any, next: any) => {
-  console.log("SERVER ERROR " + err.stack);
-  res.status(500);
-   res.send("ERRR: " + err.message);
+	console.log(req["connessione"]);
+	if(req["connessione"]) req["connessione"].close();
+    console.log("SERVER ERROR " + err.stack);
+    res.status(500);
+    res.send("ERRR: " + err.message);
 });

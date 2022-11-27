@@ -28,7 +28,14 @@
 
 
 /* *************************** */
+#mainTable tbody tr td{
+	padding:4px;
+}
 
+#mainTable tbody tr td:first-of-type {
+    font-size:8pt;
+	padding-right:12px;
+}
 
 #mainTable tbody tr td:last-of-type {
     text-align: right;
