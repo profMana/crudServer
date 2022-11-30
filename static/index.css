@@ -7,7 +7,7 @@
 
 #divCollections {
     color: white;
-	padding: 16px 0px 16px 10px;
+	padding: 15px 0px 12px 10px;
 	font-size: 12pt;
     user-select: none;
 }
@@ -28,13 +28,8 @@
 
 
 /* *************************** */
-#mainTable tbody tr td{
-	padding:4px;
-}
-
-#mainTable tbody tr td:first-of-type {
-    font-size:8pt;
-	padding-right:12px;
+#mainTable {
+	font-size:10pt;
 }
 
 #mainTable tbody tr td:last-of-type {
@@ -78,9 +73,26 @@
 
  
 
-/* terminale xs */
+/* terminale xs < 576 */
 @media  (max-width:576px) { 
 	#divHair {
 		text-align:left !important;
+	}
+	
+	#mainTable tbody tr td{
+		font-size:9pt;
+		/* riduciamo anche il padding, soprattutto quello verticale */
+		padding:4px;
+	}
+
+	#mainTable tbody tr td:first-of-type {
+		font-size:8pt;
+		/* riportiamo a 12 il paddind-right della prima cella       */
+		padding-right:12px;
+	}
+
+	#divCollections {
+		padding: 10px 0px 8px 10px;
+		font-size: 10pt;
 	}
 }

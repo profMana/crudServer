@@ -90,9 +90,6 @@ app.use("/", (req: any, res: any, next: any) => {
   next();
 });
 
-// 5 - per far sì che i json restituiti al client abbiano indentazione 4 chr
-app.set("json spaces", 4)
-
 // 6 - CORS Policy
 const whitelist = [ 
 			"http://localhost:1337", 
@@ -104,21 +101,15 @@ const whitelist = [
 				  ];
 const corsOptions = {
     origin: function(origin, callback) {
-        if (!origin)
-            return callback(null, true);
-		console.log("<----- origin --->", origin)
-        if (whitelist.indexOf(origin) === -1) {
-            var msg = 'The CORS policy for this site does not ' +
-                'allow access from the specified Origin.';
-            return callback(new Error(msg), false);
-        } 
-	    else
-            return callback(null, true);
+          return callback(null, true);
     },
     credentials: true
 };
-//app.use("/", cors(corsOptions));
+app.use("/", cors(corsOptions));
 
+
+// 7 - per far sì che i json restituiti al client abbiano indentazione 4 chr
+app.set("json spaces", 4)
 
 
 // apertura della connessione
