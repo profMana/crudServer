@@ -9,7 +9,7 @@ _dotenv.config({ path: ".env" });
 
 // Variabili relative a MongoDB ed Express
 import { MongoClient, ObjectId } from "mongodb";
-const connectionString:string = process.env.connectionStringLocal;
+const connectionString:string = process.env.connectionStringAtlas;
 const DBNAME = process.env.DBNAME
 const app = _express();
 
